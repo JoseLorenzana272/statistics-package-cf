@@ -1,0 +1,27 @@
+{
+  "name": "@JoseLorenzana272/statistics-package-cf",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "node test.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/JoseLorenzana272/statistics-package-cf.git"
+  },
+  "keywords": [],
+  "author": "José Lorenzana",
+  "license": "MIT",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  },
+  "bugs": {
+    "url": "https://github.com/JoseLorenzana272/statistics-package-cf.git/issues"
+  },
+  "description": "Package for basic Statistic Operations and graphs for nodeJS",
+  "dependencies": {
+    "canvas": "^3.1.0",
+    "chart.js": "^4.4.9",
+    "chartjs-node-canvas": "^5.0.0"
+  }
+}

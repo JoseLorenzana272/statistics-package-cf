@@ -1,0 +1,35 @@
+name: Publish Package in Github Packages
+on:
+  push:
+    branches:
+      - main
+jobs:
+  publish-package:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+      packages: write
+
+    steps:
+      - name: Clone Repository
+        uses: actions/checkout@v4
+
+      # Configure file .npmrc to publish it in GitHub Packages
+      # The action setup-node create a file .npmrc in the runner. 
+      # When we use the input scope in the setup-node action, the file .npmrc includes the prefix scope
+      # Uses as a reference the token from the env variabñe NODE_AUTH_TOKEN (GITHUB_TOKEN in reality)
+      - name: Configure .npmrc
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22.x'
+          registry-url: 'https://npm.pkg.github.com'
+          # User or Organization owner of the workflow
+          scope: '@JoseLorenzana272'
+
+      - name: Install dependencies using versions of package-lock.json
+        run: npm ci
+      - name: Publicar el paquete en GitHub Packages
+        run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
